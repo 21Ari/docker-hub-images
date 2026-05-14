@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          This is a demo project for docker learning. We have to learn docker to deploy our react app in production.
+          This is a demo project for docker learning. We have to learn docker to deploy our react app in production by doing it from github actions.
         </p>
         <a
           className="App-link"
