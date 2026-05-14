@@ -25,4 +25,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: yourdockerhubusername/repositoryname:latest
+          tags: |
+            arijitacn/mywebapp:latest
+            arijitacn/mywebapp:02
