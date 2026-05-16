@@ -1,0 +1,29 @@
+name: Docker Volume Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull Docker image
+        run: docker pull arijitacn/mywebapp:latest
+
+      - name: Create Docker volume
+        run: docker volume create mywebapp-data
+
+      - name: Run container with volume
+        run: |
+          docker run -d \
+            --name mywebapp-container \
+            -p 3000:3000 \
+            -v mywebapp-data:/app/data \
+            arijitacn/mywebapp:latest
+
+      - name: Verify running container
+        run: docker ps
+
+      - name: Verify volume
+        run: docker volume ls
