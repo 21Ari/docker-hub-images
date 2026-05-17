@@ -15,12 +15,7 @@ jobs:
         run: docker volume create mywebapp-data
 
       - name: Run container with volume
-        run: |
-          docker run -d \
-            --name mywebapp-container \
-            -p 3000:3000 \
-            -v mywebapp-data:/app/data \
-            arijitacn/mywebapp:latest
+        run: docker run -d --name mywebapp-container -p 3000:3000 -v mywebapp-data:/app/data arijitacn/mywebapp:latest
 
       - name: Verify running container
         run: docker ps
