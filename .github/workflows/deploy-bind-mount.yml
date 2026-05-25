@@ -13,8 +13,11 @@ jobs:
         run: docker pull arijitacn/mywebapp:latest
 
       - name: Remove old container
-        run: docker rm -f mywebapp-container || exit 0
         shell: powershell
+        run: |
+          if (docker ps -a --format "{{.Names}}" | Select-String "mywebapp-container") {
+           docker rm -f mywebapp-container
+          }
 
       - name: Run container with bind mount
         run: |
