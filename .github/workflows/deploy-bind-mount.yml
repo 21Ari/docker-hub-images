@@ -1,0 +1,32 @@
+name: Deploy Container with Bind Mount
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+
+      - name: Pull latest image
+        run: docker pull arijitacn/python-demo:latest
+
+      - name: Remove old container
+        run: docker rm -f python-bind-container || exit 0
+        shell: powershell
+
+      - name: Run container with bind mount
+        run: |
+          docker run -d `
+          --name python-bind-container `
+          -p 5000:5000 `
+          -v C:\docker-bind-data:/app/data `
+          arijitacn/python-demo:latest
+        shell: powershell
+
+      - name: Verify container
+        run: docker ps
+
+      - name: Verify bind mount
+        run: docker inspect python-bind-container
