@@ -10,23 +10,23 @@ jobs:
     steps:
 
       - name: Pull latest image
-        run: docker pull arijitacn/python-demo:latest
+        run: docker pull arijitacn/mywebapp:latest
 
       - name: Remove old container
-        run: docker rm -f python-bind-container || exit 0
+        run: docker rm -f mywebapp-container || exit 0
         shell: powershell
 
       - name: Run container with bind mount
         run: |
           docker run -d `
-          --name python-bind-container `
-          -p 5000:5000 `
+          --name mywebapp-container `
+          -p 3000:3000 `
           -v C:\docker-bind-data:/app/data `
-          arijitacn/python-demo:latest
+          arijitacn/mywebapp:latest
         shell: powershell
 
       - name: Verify container
         run: docker ps
 
       - name: Verify bind mount
-        run: docker inspect python-bind-container
+        run: docker inspect mywebapp-container
